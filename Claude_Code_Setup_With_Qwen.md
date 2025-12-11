@@ -1,10 +1,15 @@
-# Complete Guide: Using Claude Code with Qwen Models for Free
+# Claude Code Setup With Qwen
 
 This comprehensive guide will walk you through setting up Claude Code with Qwen models, including detailed explanations for each command and step.
 
 ---
 
-## ⭐ Requirements
+## 1. Overview
+
+This guide will help you set up Claude Code to work with Alibaba's Qwen models. Claude Code acts as a command-line interface that can be configured to use different AI models through a routing mechanism. This setup allows you to use Claude Code commands with the power of Qwen models for free.
+
+## 2. Prerequisites
+
 Before beginning, make sure the following are installed:
 
 * **Qwen CLI** (installed and authenticated)
@@ -22,13 +27,20 @@ npm --version
 - If the version is 18.x or higher for Node.js, you're good to continue.
 - If not, download and install the latest LTS release from [https://nodejs.org](https://nodejs.org)
 
----
+## 3. Project Files & Locations
 
-## 🧩 Step 1: Install Qwen CLI
+The setup will create these configuration files in your user directory:
+- `~/.claude-code-router/config.json` - Router configuration file
+- `~/.claude/settings.local.json` - Claude Code settings (if needed)
+- `~/.qwen/oauth_creds.json` - Qwen authentication credentials
+
+## 4. Step-by-Step Setup Instructions
+
+### Step 1: Install Qwen CLI
 
 The Qwen CLI is required to authenticate and manage your Qwen account.
 
-### Command Explanation:
+#### Command Explanation:
 ```bash
 npm install -g @qwen-code/qwen-code@latest
 ```
@@ -44,7 +56,7 @@ Run this command in PowerShell:
 npm install -g @qwen-code/qwen-code@latest
 ```
 
-### Verify the installation:
+#### Verify the installation:
 
 ```bash
 qwen --version
@@ -52,7 +64,7 @@ qwen --version
 
 - This command checks if Qwen CLI is properly installed and shows the version number.
 
-### Authenticate with Qwen:
+#### Authenticate with Qwen:
 
 ```bash
 qwen
@@ -60,13 +72,11 @@ qwen
 
 - This command will start the authentication process with Qwen. Follow the prompts to log in to your Qwen account.
 
----
-
-## 🧩 Step 2: Install Claude Code and Router
+### Step 2: Install Claude Code and Router
 
 Install Claude Code and the router globally to enable routing requests to Qwen models.
 
-### Command Explanation:
+#### Command Explanation:
 ```bash
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
 ```
@@ -81,7 +91,7 @@ Run this command in PowerShell:
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
 ```
 
-### Verify installations:
+#### Verify installations:
 
 ```bash
 claude --version
@@ -92,19 +102,17 @@ ccr version
 - `ccr version`: Checks if Claude Code Router is properly installed
 - `ccr` is the shorthand command for Claude Code Router
 
----
-
-## 🔑 Step 3: Get Your Qwen Access Token
+### Step 3: Get Your Qwen Access Token
 
 You need to locate your Qwen access token to configure the router.
 
-### Command Explanation:
+#### Command Explanation:
 The token is stored in a hidden file in your user directory:
 ```
 C:\Users\PC_USER\.qwen\oauth_creds.json
 ```
 
-### Steps to locate your token:
+#### Steps to locate your token:
 
 1. Open a new terminal
 2. Type `code .` to open the current directory in VS Code (optional, for file navigation)
@@ -127,13 +135,11 @@ You will see something like this:
 
 **Purpose**: The access token authenticates your requests to the Qwen API.
 
----
-
-## 📁 Step 4: Create Required Configuration Folders
+### Step 4: Create Required Configuration Folders
 
 Create the necessary directories for Claude Code and the router configuration.
 
-### Command Explanation:
+#### Command Explanation:
 ```bash
 mkdir -p ~/.claude-code-router ~/.claude
 ```
@@ -153,13 +159,11 @@ New-Item -ItemType Directory -Path "$env:USERPROFILE\.claude" -Force
 
 **Purpose**: These directories store configuration files needed for Claude Code and the router to function properly.
 
----
-
-## ⚙️ Step 5: Create the Router Configuration
+### Step 5: Create the Router Configuration
 
 Create the configuration file that tells the router how to connect to Qwen models.
 
-### Command Explanation for Linux/Mac:
+#### Command Explanation for Linux/Mac:
 ```bash
 cat > ~/.claude-code-router/config.json << 'EOF'
 {
@@ -196,7 +200,7 @@ EOF
 - `<< 'EOF'`: Starts a here-document that ends when it encounters the EOF marker
 - This creates a JSON configuration file with settings for the Qwen provider
 
-### For Windows PowerShell users:
+#### For Windows PowerShell users:
 Since Windows doesn't support the `cat << EOF` syntax, create the file using Notepad:
 
 ```powershell
@@ -237,7 +241,7 @@ Then paste this JSON configuration:
 
 **Replace `YOUR_QWEN_ACCESS_TOKEN_HERE`** with your actual access token from Step 3.
 
-### Configuration Explanation:
+#### Configuration Explanation:
 
 - `"LOG": true` - Enables logging for debugging
 - `"LOG_LEVEL": "info"` - Sets logging level to show informational messages
@@ -247,20 +251,19 @@ Then paste this JSON configuration:
 - `"Providers"` - Defines the AI model providers (in this case, Qwen)
 - `"Router"` - Maps different Claude Code operations to specific models
 
-### Router Mapping Explanations:
+#### Router Mapping Explanations:
 - `"default"`: Used for regular Claude Code commands
 - `"background"`: Used for background tasks
 - `"think"`: Used for thinking/analysis tasks
 - `"longContext"`: Used for tasks requiring long context
 - `"webSearch"`: Used for web search functionality
 
----
+## 5. Usage in This Project
 
-## 🚀 Step 6: Start the Router
+### Start the Router
 
 Start the Claude Code router to begin forwarding requests to Qwen.
 
-### Command Explanation:
 ```bash
 ccr restart
 ```
@@ -282,13 +285,10 @@ Wait until you see:
 
 **Purpose**: The router acts as a bridge between Claude Code and the Qwen API, translating Claude Code commands into Qwen-compatible requests.
 
----
-
-## 🧪 Step 7: Test the Setup
+### Quick Test
 
 Test your Claude Code setup with Qwen models.
 
-### Command Explanation:
 ```bash
 ccr code
 ```
@@ -310,13 +310,13 @@ When the Claude interface opens, try:
 
 **Purpose**: This tests if Claude Code is properly communicating with the Qwen models through the router.
 
----
+## 6. Troubleshooting
 
-## 🔄 Handling 401 Token Errors (Troubleshooting)
+### Handling 401 Token Errors (Authentication Issues)
 
 If your Qwen OAuth token expires, you'll need to refresh it.
 
-### 1️⃣ Reauthenticate
+#### 1️⃣ Reauthenticate
 If tokens don't match or you get authentication errors, delete the old credentials and reauthenticate:
 
 ```bash
@@ -330,7 +330,7 @@ Then re-run the authentication:
 qwen
 ```
 
-### 2️⃣ Update your router config
+#### 2️⃣ Update your router config
 If you get a new token, update your router configuration:
 
 ```powershell
@@ -339,16 +339,39 @@ notepad "$env:USERPROFILE\.claude-code-router\config.json"
 
 Replace the `api_key` value with your new `access_token`.
 
-### 3️⃣ Restart the router
+#### 3️⃣ Restart the router
 ```bash
 ccr restart
 ```
 
 **Purpose**: Token expiration is common with OAuth-based APIs. This process ensures you maintain access to the Qwen API.
 
----
+### Router Issues
+If the router won't start:
 
-## ⚠️ Important Notes
+1. Check if port 3456 is available:
+```powershell
+Test-NetConnection -ComputerName localhost -Port 3456
+```
+
+2. Restart the router:
+```powershell
+ccr restart
+```
+
+### Connection Issues
+If Claude Code can't connect:
+
+1. Verify the router is running:
+```powershell
+ccr status
+```
+
+2. Check your internet connection and firewall settings
+
+## 7. Notes & Best Practices
+
+### Important Notes
 
 1. **Replace `YOUR_QWEN_ACCESS_TOKEN_HERE`** with your actual access token from the oauth_creds.json file
 2. **The configuration maps different Claude Code operations** to appropriate Qwen models
@@ -356,9 +379,7 @@ ccr restart
 4. **The API timeout is set to 10 minutes (600000ms)** to handle longer operations
 5. **The router runs on port 3456** - ensure this port is not blocked by firewall
 
----
-
-## 🔄 Qwen Model Options
+### Qwen Model Options
 
 You can use different Qwen models based on your needs:
 
@@ -366,41 +387,48 @@ You can use different Qwen models based on your needs:
 - `qwen3-coder-max`: Most capable for complex tasks - better for reasoning and complex code
 - `qwen3-coder-turbo`: Fastest for simple tasks - good for quick responses
 
-### Changing Models:
+#### Changing Models:
 To use a different model, change the model name in the router configuration:
 - From `"default": "qwen,qwen3-coder-plus"`
 - To `"default": "qwen,qwen3-coder-max"` (for the more capable model)
 
----
+### Additional Commands and Tips
 
-## 🛠️ Additional Commands and Tips
-
-### Useful Claude Code Commands:
+#### Useful Claude Code Commands:
 - `> help` - Show available commands
 - `> /file <path>` - Include a file in the conversation
 - `> /clear` - Clear the current conversation
 - `> /exit` - Exit Claude Code
 
-### Router Management Commands:
+#### Router Management Commands:
 - `ccr start` - Start the router
 - `ccr stop` - Stop the router
 - `ccr restart` - Restart the router
 - `ccr status` - Check router status
 - `ccr version` - Check router version
 
-### Configuration Updates:
+#### Configuration Updates:
 If you need to update your configuration later:
 1. Stop the router: `ccr stop`
 2. Edit the config file: `notepad "$env:USERPROFILE\.claude-code-router\config.json"`
 3. Restart the router: `ccr restart`
 
----
-
-## 📞 Support and Resources
+### Support and Resources
 
 - Qwen Documentation: [https://qwen.ai](https://qwen.ai)
 - Claude Code Documentation: [https://docs.anthropic.com](https://docs.anthropic.com)
 - Claude Code Router: Check GitHub repository for updates
 
 ---
-Don't forget to subscribe to the YouTube Channel [Code With Hamza](https://www.youtube.com/@codewithhamza119) for more tutorials and guides.
+
+## Quick Verification Checklist
+
+- [ ] Node.js version is 18 or higher (`node --version`)
+- [ ] Qwen CLI is installed (`qwen --version` works)
+- [ ] Claude Code is installed (`claude --version` works)
+- [ ] Claude Code Router is installed (`ccr version` works)
+- [ ] Qwen account is authenticated (`qwen` command works)
+- [ ] Router configuration file exists at `~/.claude-code-router/config.json`
+- [ ] Router starts successfully (`ccr start` shows "Service started successfully")
+- [ ] Claude Code connects through router (`ccr code` opens Claude interface)
+- [ ] Test command works (`> hi` returns a response from Qwen)

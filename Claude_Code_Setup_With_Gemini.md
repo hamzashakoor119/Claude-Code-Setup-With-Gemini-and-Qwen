@@ -1,10 +1,15 @@
-# Complete Guide: Using Claude Code with Google Gemini for Free
+# Claude Code Setup With Gemini
 
 This comprehensive guide will walk you through setting up Claude Code with Google Gemini models, including detailed explanations for each command and step.
 
 ---
 
-## ⭐ Requirements
+## 1. Overview
+
+This guide will help you set up Claude Code to work with Google's Gemini models. Claude Code acts as a command-line interface that can be configured to use different AI models through a routing mechanism. This setup allows you to use Claude Code commands with the power of Google's Gemini models for free.
+
+## 2. Prerequisites
+
 Before beginning, make sure the following are installed:
 
 * **Node.js v18 or later**
@@ -22,13 +27,19 @@ npm --version
 - If the version is 18.x or higher for Node.js, you're good to continue.
 - If not, download and install the latest LTS release from [https://nodejs.org](https://nodejs.org)
 
----
+## 3. Project Files & Locations
 
-## 🔑 Step 1: Generate Your Google API Key
+The setup will create these configuration files in your user directory:
+- `~/.claude-code-router/config.json` - Router configuration file
+- `~/.claude/settings.local.json` - Claude Code settings (if needed)
+
+## 4. Step-by-Step Setup Instructions
+
+### Step 1: Generate Your Google API Key
 
 You need to create a Google API key to access Gemini models.
 
-### Steps to create your API key:
+#### Steps to create your API key:
 
 1. Visit: [https://aistudio.google.com](https://aistudio.google.com)
 2. Sign in with your Google account
@@ -39,18 +50,15 @@ You need to create a Google API key to access Gemini models.
 AIzaSy...............
 ```
 
-### Command Explanation:
+#### Command Explanation:
 - This API key authenticates your requests to Google's Gemini API
 - Keep this key secure and don't share it publicly
 - The key follows the format: `AIzaSy` followed by a unique identifier
 
----
-
-## 🧩 Step 2: Install Claude Code and Router
+### Step 2: Install Claude Code and Router
 
 Install Claude Code and the router globally to enable routing requests to Gemini models.
 
-### Command Explanation:
 ```bash
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
 ```
@@ -68,7 +76,7 @@ Run this command in PowerShell (Run as Administrator):
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
 ```
 
-### Verify installations:
+#### Verify installations:
 
 ```powershell
 claude --version
@@ -79,13 +87,11 @@ ccr version
 - `ccr version`: Checks if Claude Code Router is properly installed
 - `ccr` is the shorthand command for Claude Code Router
 
----
-
-## 📁 Step 3: Create Required Configuration Folders
+### Step 3: Create Required Configuration Folders
 
 Create the necessary directories for Claude Code and the router configuration.
 
-### Command Explanation for Windows PowerShell:
+#### Command Explanation for Windows PowerShell:
 ```powershell
 mkdir $HOME/.claude-code-router
 mkdir $HOME/.claude
@@ -103,13 +109,11 @@ mkdir -p ~/.claude-code-router ~/.claude
 
 **Purpose**: These directories store configuration files needed for Claude Code and the router to function properly.
 
----
-
-## ⚙️ Step 4: Configure Your Environment Variable (API Key)
+### Step 4: Configure Your Environment Variable (API Key)
 
 Set up your Google API key as an environment variable so the router can access it.
 
-### Command Explanation for Windows PowerShell:
+#### Command Explanation for Windows PowerShell:
 ```powershell
 [System.Environment]::SetEnvironmentVariable('GOOGLE_API_KEY', 'YOUR_API_KEY_HERE', 'User')
 ```
@@ -119,12 +123,12 @@ Set up your Google API key as an environment variable so the router can access i
 - `'YOUR_API_KEY_HERE'`: Replace with your actual Google API key from Step 1
 - `'User'`: Sets the variable for the current user (not system-wide)
 
-### Example:
+#### Example:
 ```powershell
 [System.Environment]::SetEnvironmentVariable('GOOGLE_API_KEY', 'AIzaSyYourActualApiKeyHere', 'User')
 ```
 
-### Verify the Key
+#### Verify the Key
 
 Close PowerShell → open a new window → run:
 
@@ -137,13 +141,11 @@ echo $env:GOOGLE_API_KEY
 
 **Purpose**: The environment variable allows the router to access your API key without hardcoding it in configuration files.
 
----
-
-## ⚙️ Step 5: Create the Router Configuration
+### Step 5: Create the Router Configuration
 
 Create the configuration file that tells the router how to connect to Gemini models.
 
-### For Windows PowerShell users:
+#### For Windows PowerShell users:
 Since Windows doesn't support the `cat << EOF` syntax, create the file using Notepad:
 
 ```powershell
@@ -184,7 +186,7 @@ Then paste this JSON configuration:
 }
 ```
 
-### Configuration Explanation:
+#### Configuration Explanation:
 
 - `"LOG": true` - Enables logging for debugging
 - `"LOG_LEVEL": "info"` - Sets logging level to show informational messages
@@ -197,49 +199,22 @@ Then paste this JSON configuration:
 - `"transformer"`: Configures request/response transformation for Gemini compatibility
 - `"Router"` - Maps different Claude Code operations to specific models
 
-### Router Mapping Explanations:
+#### Router Mapping Explanations:
 - `"default"`: Used for regular Claude Code commands
 - `"background"`: Used for background tasks
 - `"think"`: Used for thinking/analysis tasks
 - `"longContext"`: Used for tasks requiring long context
 - `"webSearch"`: Used for web search functionality
 
-### Gemini Model Options:
+#### Gemini Model Options:
 - `"gemini-2.5-flash"`: Latest and most capable flash model
 - `"gemini-2.0-flash"`: Previous version, still capable but faster
 
----
+## 5. Usage in This Project
 
-## 🚀 Step 6: Validate Installation
+### Start Using Claude Code with Gemini
 
-Test that all components are properly installed and configured.
-
-### Command Explanation:
-```powershell
-claude --version
-ccr version
-echo $env:GOOGLE_API_KEY
-```
-
-- `claude --version`: Verifies Claude Code is installed
-- `ccr version`: Verifies Claude Code Router is installed
-- `echo $env:GOOGLE_API_KEY`: Verifies your API key is accessible as an environment variable
-
-Run these commands in PowerShell:
-
-```powershell
-claude --version
-ccr version
-echo $env:GOOGLE_API_KEY
-```
-
-If all commands return output without errors, the setup is successful.
-
----
-
-## 🚀 Step 7: Start Using Claude Code with Gemini
-
-### Start the Router (Terminal 1)
+#### Start the Router (Terminal 1)
 
 ```powershell
 ccr start
@@ -250,7 +225,7 @@ ccr start
 
 **Purpose**: The router acts as a bridge between Claude Code and the Gemini API, translating Claude Code commands into Gemini-compatible requests.
 
-### Use Claude Code (Terminal 2)
+#### Use Claude Code (Terminal 2)
 
 Navigate to your project directory:
 
@@ -262,21 +237,9 @@ ccr code
 - `cd your-project-folder`: Changes to your project directory
 - `ccr code`: Launches Claude Code through the router with Gemini backend
 
----
-
-## 🧪 Step 8: Quick Test
+### Quick Test
 
 Test your Claude Code setup with Gemini models.
-
-### Command Explanation:
-```powershell
-ccr code
-```
-
-- `ccr code`: Launches Claude Code through the router
-- This command starts an interactive Claude Code session using Gemini models
-
-Run this command in PowerShell:
 
 ```powershell
 ccr code
@@ -290,9 +253,7 @@ When the Claude interface opens, try:
 
 **Purpose**: This tests if Claude Code is properly communicating with the Gemini models through the router.
 
----
-
-## 🔄 Troubleshooting Common Issues
+## 6. Troubleshooting
 
 ### 1️⃣ API Key Issues
 If you get authentication errors:
@@ -329,9 +290,9 @@ ccr status
 
 2. Check your internet connection and firewall settings
 
----
+## 7. Notes & Best Practices
 
-## ⚠️ Important Notes
+### Important Notes
 
 1. **Keep your Google API key secure** - don't share it publicly or commit it to version control
 2. **The configuration maps different Claude Code operations** to appropriate Gemini models
@@ -340,46 +301,40 @@ ccr status
 5. **The router runs on port 3456** - ensure this port is not blocked by firewall
 6. **Gemini API usage may incur costs** - monitor your usage in Google Cloud Console
 
----
-
-## 🔄 Gemini Model Options
+### Gemini Model Options
 
 You can use different Gemini models based on your needs:
 
 - `gemini-2.5-flash`: Latest and most capable flash model - good for most tasks
 - `gemini-2.0-flash`: Previous version, still capable but faster - good for simple tasks
 
-### Changing Models:
+#### Changing Models:
 To use a different model, change the model name in the router configuration:
 - From `"default": "gemini,gemini-2.5-flash"`
 - To `"default": "gemini,gemini-2.0-flash"` (for the faster model)
 
----
+### Additional Commands and Tips
 
-## 🛠️ Additional Commands and Tips
-
-### Useful Claude Code Commands:
+#### Useful Claude Code Commands:
 - `> help` - Show available commands
 - `> /file <path>` - Include a file in the conversation
 - `> /clear` - Clear the current conversation
 - `> /exit` - Exit Claude Code
 
-### Router Management Commands:
+#### Router Management Commands:
 - `ccr start` - Start the router
 - `ccr stop` - Stop the router
 - `ccr restart` - Restart the router
 - `ccr status` - Check router status
 - `ccr version` - Check router version
 
-### Configuration Updates:
+#### Configuration Updates:
 If you need to update your configuration later:
 1. Stop the router: `ccr stop`
 2. Edit the config file: `notepad "$env:USERPROFILE\.claude-code-router\config.json"`
 3. Restart the router: `ccr restart`
 
----
-
-## 📞 Support and Resources
+### Support and Resources
 
 - Google AI Studio: [https://aistudio.google.com](https://aistudio.google.com)
 - Google Gemini API Documentation: [https://ai.google.dev](https://ai.google.dev)
@@ -387,4 +342,14 @@ If you need to update your configuration later:
 - Claude Code Router: Check GitHub repository for updates
 
 ---
-Don't forget to subscribe to the YouTube Channel [Code With Hamza](https://www.youtube.com/@codewithhamza119) for more tutorials and guides.
+
+## Quick Verification Checklist
+
+- [ ] Node.js version is 18 or higher (`node --version`)
+- [ ] Claude Code is installed (`claude --version` works)
+- [ ] Claude Code Router is installed (`ccr version` works)
+- [ ] Google API key environment variable is set (`echo $env:GOOGLE_API_KEY` shows your key)
+- [ ] Router configuration file exists at `~/.claude-code-router/config.json`
+- [ ] Router starts successfully (`ccr start` shows "Service started successfully")
+- [ ] Claude Code connects through router (`ccr code` opens Claude interface)
+- [ ] Test command works (`> hi` returns a response from Gemini)
