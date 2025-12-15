@@ -22,7 +22,7 @@ Open PowerShell, Run This Command:
 ```
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
 ```
-Chek Installed Or Not :
+Chek if it Installed :
 ```
 ccr --version
 or
@@ -33,6 +33,10 @@ ccr --help
 In PowerShell, Run This Command:
 ```
 npm install -g @qwen-code/qwen-code@latest
+```
+Chek if it Installed :
+```
+npm uninstall -g qwen
 ```
 
 ### Step 3: Login to Qwen
