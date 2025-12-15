@@ -36,7 +36,7 @@ npm install -g @qwen-code/qwen-code@latest
 ```
 Chek if it Installed :
 ```
-npm uninstall -g qwen
+qwen --version
 ```
 
 ### Step 3: Login to Qwen
