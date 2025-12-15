@@ -26,7 +26,7 @@ Chek Installed Or Not :
 ```
 ccr --version
 or
-ccr help
+ccr --help
 ```
 
 ### Step 2: Install Qwen CLI
