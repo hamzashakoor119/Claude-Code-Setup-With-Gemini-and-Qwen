@@ -134,6 +134,9 @@ hi
 Aur Enter press karo.
 Agar reply aa jaye to setup successful hai.
 
+# Note :
+Ugr Start main hi yaa use krty hoye yaaa api ka error aye yaa api ,token limits etc ka error aye too " . qwen " ka folder delete kr ky Step 3 sy Step 7 Tak Steps dubara follow kro issue resolve hoo jaye ga.
+Ugr aap ka Setup Oky Chal Raha hai Too Window Directory Py Kisi Bhi terminal main " qwen " ki command run mat krna nhi totoken refresh hoo jaye gaa , new token aajaye gaa or aap ko dubara token copy past krna pry ga .
 ## Troubleshooting
 
 Command not found:
