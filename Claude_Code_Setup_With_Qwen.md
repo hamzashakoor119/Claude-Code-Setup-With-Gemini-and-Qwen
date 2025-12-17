@@ -21,7 +21,6 @@ node --version
 Agar output mein v18 ya us se zyada ho to continue karo.
 Agar nahi ho to Node.js yahan se install karo:
 https://nodejs.org
-bash
 
 ## Step 1: Claude Code aur Router Install karo
 
@@ -189,8 +188,7 @@ Claude Code & Router installed
 Access token added
 ccr restart successful
 ccr code test working
-ruby
-Copy code
+
 ## Follow On LinkedIn
 
 https://www.linkedin.com/in/hamza-shakoor-6a4350180/
