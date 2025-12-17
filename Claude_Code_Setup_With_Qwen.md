@@ -29,7 +29,6 @@ PowerShell open karo aur ye command paste karo:
 
 ```
 npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
-sql
 ```
 Install check karne ke liye:
 
