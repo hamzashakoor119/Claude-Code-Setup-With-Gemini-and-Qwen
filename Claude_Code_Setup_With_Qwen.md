@@ -70,7 +70,9 @@ notepad "$env:USERPROFILE\.claude-code-router\config.json"
 ```
 
 Copy and paste this text into the file that opens. **Replace `YOUR_QWEN_ACCESS_TOKEN_HERE` with your actual access token from Step 4**:
-```json
+
+```
+json
 {
   "LOG": true,
   "LOG_LEVEL": "info",
