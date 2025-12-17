@@ -49,18 +49,8 @@ Qwen install check:
 ```
 qwen --version
 ```
-## Step 3: Qwen Login
 
-PowerShell mein ye command run karo:
-```
-qwen
-```
-
-Browser open hoga.
-Login steps follow karo.
-Login complete hone ke baad PowerShell band mat karo.
-
-## Step 4:Configration Ky Liaye
+## Step 3:Configration Ky Liaye
 New PowerShell Open Kro Or Yee Command Runn Kro:
 
 ```
@@ -99,6 +89,17 @@ Root directory main 1 folder create kroo " .claude-code-route " ky name sy then 
 }
 ```
 
+## Step 4: Qwen Login
+
+PowerShell mein ye command run karo:
+```
+qwen
+```
+
+Browser open hoga.
+Login steps follow karo.
+Login complete hone ke baad PowerShell band mat karo.
+
 ## Step 5: Qwen Access Token Find karo
 
 Rot Directory main 1 folder find kroo " .qwen " ky name sy hoga usy open kroo us main 1 file hogi " oauth_creds.json " us file ko open kroo or waha sy access token copy kroo or " .claude-code-router " main " config.json " file main "api_key" ki gaha yee access tokrn paste kro or save kro :
@@ -135,7 +136,7 @@ Aur Enter press karo.
 Agar reply aa jaye to setup successful hai.
 
 # Note :
-Ugr Start main hi yaa use krty hoye yaaa api ka error aye yaa api ,token limits etc ka error aye too " . qwen " ka folder delete kr ky Step 3 sy Step 7 Tak Steps dubara follow kro issue resolve hoo jaye ga.
+Ugr Start main hi yaa use krty hoye yaaa api ka error aye yaa api ,token limits etc ka error aye too " . qwen " ka folder delete kr ky Step #4 sy Step #7 Tak Steps dubara follow kro issue resolve hoo jaye ga.
 Ugr aap ka Setup Oky Chal Raha hai Too Window Directory Py Kisi Bhi terminal main " qwen " ki command run mat krna nhi totoken refresh hoo jaye gaa , new token aajaye gaa or aap ko dubara token copy past krna pry ga .
 ## Troubleshooting
 
